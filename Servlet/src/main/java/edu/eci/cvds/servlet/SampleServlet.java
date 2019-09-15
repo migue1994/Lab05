@@ -25,8 +25,5 @@ public class SampleServlet extends HttpServlet{
        responseWriter.write("Hello" + name + "!");
        responseWriter.flush();
    }
-
-
-
 }
 
