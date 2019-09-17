@@ -14,6 +14,7 @@ public class Guess {
 	private int premio;
 	private int guessNum;
 	private boolean winner,gameOver;
+	private String guessUser;
 	
 	
 	public Guess() {
@@ -56,6 +57,14 @@ public class Guess {
 
 	public void setNum() {
 		
+	}
+
+	public int getGuessUser() {
+		return this.guessUser;
+	}
+
+	public void setNum(String guessUser) {
+		this.guessUser=guessUser;
 	}
 	
 }
