@@ -12,9 +12,10 @@ public class Guess {
 	private final int maximo=100000;
 	private final int penal=10000;
 	private int premio;
-	private int guessNum;
+	private int guessNum,intentos;
 	private boolean winner,gameOver;
 	private String guessUser;
+	private String estado;
 	
 	
 	public Guess() {
@@ -41,6 +42,7 @@ public class Guess {
 			this.gameOver=true;
 			this.winner=true;
 		}
+		intentos++;
 	}
 	
 	
@@ -51,12 +53,13 @@ public class Guess {
 		this.gameOver=false;
 	}
 	
+	
 	public int getPremio() {
 		return this.premio;
 	}
 
-	public void setNum() {
-		
+	public void setPremio(int premio) {
+		this.premio=premio;
 	}
 
 	public String getGuessUser() {
@@ -67,4 +70,29 @@ public class Guess {
 		this.guessUser=guessUser;
 	}
 	
+	public int getIntentos() {
+		return this.intentos;
+	}
+
+	public void setIntentos(int intentos) {
+		this.intentos=intentos;
+	}
+	
+	public String getEstado() {
+		if(!gameOver) {
+			this.estado="En juego";
+		}
+		else {
+			if(winner) this.estado="Has ganado";
+			else this.estado="Has perdido";
+		}
+		return this.estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado=estado;
+	}
+	
 }
+
+

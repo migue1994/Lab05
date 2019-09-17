@@ -8,10 +8,20 @@
 	
 	
     <h:body>
-    	<h:form >  
-                <h1>JSF 2 textbox example</h1>
+    	<h:form id="guess_form">  
+    		
+            <h1>Hello Word!</h1>
+            <p:outputLabel for="@next"  style="display: none"/>
     		<p:inputText id ="number" value="#{guessBean.guessUser}" />
     		<h:commandButton value="Submit" action="user" />
+    		<br/><br/>
+    		<p:outputLabel  value="Intentos: #{guessBean.intentos}"/>
+    		<br/>
+    		<p:outputLabel  value="Estado: #{guessBean.estado}"/>
+    		<br/>
+    		<p:outputLabel  value="Puntaje: #{guessBean.premio}"/>
+    		<br/>
+    		
     	</h:form>   
     </h:body>
 </html>
