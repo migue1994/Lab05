@@ -59,11 +59,11 @@ public class Guess {
 		
 	}
 
-	public int getGuessUser() {
+	public String getGuessUser() {
 		return this.guessUser;
 	}
 
-	public void setNum(String guessUser) {
+	public void setGuessUser(String guessUser) {
 		this.guessUser=guessUser;
 	}
 	

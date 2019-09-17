@@ -3,13 +3,14 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:f="http://java.sun.com/jsf/core"      
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
 	
 	
     <h:body>
     	<h:form >  
                 <h1>JSF 2 textbox example</h1>
-    		<h:inputText id ="number" value="#{guessBean.guessUser}" />
+    		<p:inputText id ="number" value="#{guessBean.guessUser}" />
     		<h:commandButton value="Submit" action="user" />
     	</h:form>   
     </h:body>
