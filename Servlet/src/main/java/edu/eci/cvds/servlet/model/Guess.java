@@ -13,6 +13,7 @@ public class Guess {
 	
 	private final int maximo=100000;
 	private final int penal=10000;
+	private final int rango=5;
 	private int premio;
 	private int guessNum,intentos;
 	private boolean winner,gameOver;
@@ -64,8 +65,12 @@ public class Guess {
 		this.guessUser=0;
 		this.setEstado("En juego");
 		this.listaIntentos=new ArrayList<Integer>();
+		inicializarLista(this.listaIntentos,(int)(maximo/penal));
 	}
 	
+	private void inicializarLista(ArrayList<Integer> lista, int n) {
+		for(int i=0;i<n;i++) lista.add(i,0);
+	}
 	
 	public int getPremio() {
 		return this.premio;
@@ -115,7 +120,21 @@ public class Guess {
 	}
 	
 	public ArrayList<Integer> getListaIntentos(){
-		return this.listaIntentos;
+		ArrayList<Integer>l=new ArrayList<Integer>();
+		int desde,hasta,j=0;
+		
+		if(this.intentos<this.rango) {
+			desde=0;hasta=this.rango;
+		}
+		else {
+			desde=this.intentos-this.rango;hasta=this.rango+desde;
+		}
+		for(int i=desde;i<hasta;i++) {
+			l.add(j,listaIntentos.get(i));
+			j++;
+		}
+		
+		return l;
 	}
 	
 	public void setListaIntentos(ArrayList<Integer> listaIntentos){
