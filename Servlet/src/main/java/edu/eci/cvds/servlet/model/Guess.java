@@ -1,5 +1,6 @@
 package edu.eci.cvds.servlet.model;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import javax.faces.bean.ApplicationScoped;
@@ -17,6 +18,7 @@ public class Guess {
 	private boolean winner,gameOver;
 	private int guessUser;
 	private String estado;
+	private ArrayList<Integer> listaIntentos;
 	
 	
 	public Guess() {
@@ -34,11 +36,11 @@ public class Guess {
 	 * Recibe un intento de adivinanza;
 	 */
 	public void guess() {
-		if(!gameOver && !winner) {
+		if(!this.gameOver && !this.winner) {
 			if(guessUser!=this.guessNum) {
 				int resta=this.premio-penal;
 				if(resta>=0) {
-					this.premio-=penal;
+					this.premio-=this.penal;
 					if(this.premio==0) this.gameOver=true;
 				}
 			}
@@ -46,19 +48,22 @@ public class Guess {
 				this.gameOver=true;
 				this.winner=true;
 			}
-			intentos++;
+			this.listaIntentos.add(this.intentos,guessUser);
+			this.intentos++;
+			
 		}
 	}
 	
 	
 	public void restart() {
 		this.premio=maximo;
-		this.intentos=0;
 		this.guessNum=randomNum();
+		this.intentos=0;
 		this.winner=false;
 		this.gameOver=false;
-		this.setEstado("En juego");
 		this.guessUser=0;
+		this.setEstado("En juego");
+		this.listaIntentos=new ArrayList<Integer>();
 	}
 	
 	
@@ -108,6 +113,18 @@ public class Guess {
 	public void getGuessNum(int guessNum) {
 		this.guessNum=guessNum;
 	}
+	
+	public ArrayList<Integer> getListaIntentos(){
+		return this.listaIntentos;
+	}
+	
+	public void setListaIntentos(ArrayList<Integer> listaIntentos){
+		this.listaIntentos=listaIntentos;
+	}
+	
 }
+
+
+
 
 
