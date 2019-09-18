@@ -26,7 +26,8 @@ public class TodoServlet extends HttpServlet{
 	private void sendError(HttpServletResponse res, String message, int error) {
 		try {
 			res.sendError(error, message);
-		} catch (IOException e) {
+		} 
+		catch (IOException e) {
 			e.printStackTrace();
 		}
 	}

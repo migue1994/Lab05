@@ -4,9 +4,10 @@ import java.util.Random;
 
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 
 @ManagedBean(name = "guessBean")
-@ApplicationScoped
+@SessionScoped
 public class Guess {
 	
 	private final int maximo=100000;
@@ -14,7 +15,7 @@ public class Guess {
 	private int premio;
 	private int guessNum,intentos;
 	private boolean winner,gameOver;
-	private String guessUser;
+	private int guessUser;
 	private String estado;
 	
 	
@@ -24,7 +25,7 @@ public class Guess {
 	
 	private int randomNum() {
 		Random random = new Random(System.currentTimeMillis());
-		int num = random.nextInt(100);
+		int num = random.nextInt(100)+1;
 		random.setSeed(System.currentTimeMillis());	
 		return num;
 	}
@@ -32,25 +33,32 @@ public class Guess {
 	/*
 	 * Recibe un intento de adivinanza;
 	 */
-	public void guess(int intento) {
-		if(intento!=this.guessNum) {
-			int resta=this.premio-penal;
-			if(resta>=0)this.premio-=penal;
-			else this.gameOver=true;
+	public void guess() {
+		if(!gameOver && !winner) {
+			if(guessUser!=this.guessNum) {
+				int resta=this.premio-penal;
+				if(resta>=0) {
+					this.premio-=penal;
+					if(this.premio==0) this.gameOver=true;
+				}
+			}
+			else {
+				this.gameOver=true;
+				this.winner=true;
+			}
+			intentos++;
 		}
-		else {
-			this.gameOver=true;
-			this.winner=true;
-		}
-		intentos++;
 	}
 	
 	
 	public void restart() {
 		this.premio=maximo;
+		this.intentos=0;
 		this.guessNum=randomNum();
 		this.winner=false;
 		this.gameOver=false;
+		this.setEstado("En juego");
+		this.guessUser=0;
 	}
 	
 	
@@ -62,11 +70,11 @@ public class Guess {
 		this.premio=premio;
 	}
 
-	public String getGuessUser() {
+	public int getGuessUser() {
 		return this.guessUser;
 	}
 
-	public void setGuessUser(String guessUser) {
+	public void setGuessUser(int guessUser) {
 		this.guessUser=guessUser;
 	}
 	
@@ -93,6 +101,13 @@ public class Guess {
 		this.estado=estado;
 	}
 	
+	public int getGuessNum() {
+		return this.guessNum;
+	}
+	
+	public void getGuessNum(int guessNum) {
+		this.guessNum=guessNum;
+	}
 }
 
 

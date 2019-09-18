@@ -10,17 +10,22 @@
     <h:body>
     	<h:form id="guess_form">  
     		
-            <h1>Hello Word!</h1>
-            <p:outputLabel for="@next"  style="display: none"/>
+            <h1>Guess the number!</h1>
+            <p:outputLabel  value="valor: #{guessBean.guessNum}" style="display: none"/>
+            <br/>
     		<p:inputText id ="number" value="#{guessBean.guessUser}" />
-    		<h:commandButton value="Submit" action="user" />
+			<p:commandButton value="Submit" update="guess_form" actionListener="#{guessBean.guess}"></p:commandButton>
+
     		<br/><br/>
     		<p:outputLabel  value="Intentos: #{guessBean.intentos}"/>
     		<br/>
     		<p:outputLabel  value="Estado: #{guessBean.estado}"/>
     		<br/>
     		<p:outputLabel  value="Puntaje: #{guessBean.premio}"/>
-    		<br/>
+    		<br/><br/>
+			<p:commandButton value="Restart" update="guess_form" actionListener="#{guessBean.restart}"></p:commandButton>
+			
+    		
     		
     	</h:form>   
     </h:body>
