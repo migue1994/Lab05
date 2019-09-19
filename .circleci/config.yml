@@ -31,12 +31,12 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
-      - run: gradle dependencies
+      - run: mvn offset Servlet/pom.xml
 
       - save_cache:
           paths:
             - ~/.gradle
-          key: v1-dependencies-{{ checksum "build.gradle" }}
+          key: v1-dependencies-{{ checksum "Servlet/pom.xml" }}
 
       # run tests!
       - run: gradle test
