@@ -31,7 +31,7 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
-      - run: mvn-offline -f Servlet/pom.xml
+      - run dependencies: mvn-offline -f Servlet/pom.xml
 
       - save_cache:
           paths:
@@ -39,4 +39,4 @@ jobs:
           key: v1-dependencies-{{ checksum "Servlet/pom.xml" }}
 
       # run tests!
-      - run: mvn-offline -f Servlet/pom.xml
+      - run dependencies: mvn-offline -f Servlet/pom.xml
