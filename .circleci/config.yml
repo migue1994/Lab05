@@ -14,7 +14,7 @@ jobs:
       # documented at https://circleci.com/docs/2.0/circleci-images/
       # - image: circleci/postgres:9.4
 
-    working_directory: ~/Servlet
+    working_directory: ~/repo
 
     environment:
       # Customize the JVM maximum heap limit
@@ -27,7 +27,7 @@ jobs:
       # Download and cache dependencies
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "build.gradle" }}
+            - v1-dependencies-{{ checksum "Servlet/pom.xml" }}
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
@@ -39,4 +39,4 @@ jobs:
           key: v1-dependencies-{{ checksum "Servlet/pom.xml" }}
 
       # run tests!
-      - run: gradle test
+      - run: mvn offset Servlet/pom.xml
