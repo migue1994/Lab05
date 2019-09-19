@@ -23,6 +23,12 @@ public class TodoServlet extends HttpServlet{
 	
 	private static final long serialVersionUID = 1L;
 	
+	/**
+	 * Lanza el error para que aparezca en la página.
+	 * @param res es el HttpServletResponse.
+	 * @param message es el mensaje que se quiere que aparezca en la página.
+	 * @param error es el número del error. Ej:404, 400, etc..
+	 */
 	private void sendError(HttpServletResponse res, String message, int error) {
 		try {
 			res.sendError(error, message);
